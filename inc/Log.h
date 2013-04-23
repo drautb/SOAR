@@ -12,11 +12,9 @@ namespace SOAR
 
 	/**
 	 * A log class implemented as a singleton. 
-	 * Implementation Details: The class internally maintains a stringstream 
+	 * The class internally maintains a stringstream 
 	 * object which is what is actually 'written' to by the class. In this
 	 * class's destructor it appends/writes the stringstream to the log file.
-	 * @class Log
-	 *
 	 */
 	class Log
 	{
@@ -38,7 +36,7 @@ namespace SOAR
 
 		/**
 		 * Initializes the LOG_FILENAME constant and clears the 
-		 * m_outputStream in preparation for writing.
+		 * output in preparation for writing.
 		 */ 
 		Log();
 
@@ -50,7 +48,7 @@ namespace SOAR
 	public:
 
 		/**
-		 * Returns the single instance of this class.
+		 * Returns a pointer to the single instance of this class.
 		 */
 		static Log* GetInstance();
 
@@ -60,12 +58,20 @@ namespace SOAR
 		stringstream& Output();
 
 		/**
-		 * Change the formatting of Date/times sent to the log
+		 * Sets the format string used to format date and time values for
+		 * the log. 
+		 * 
+		 * See here for valid format string values:
+		 * http://www.cplusplus.com/reference/ctime/strftime/
 		 */
 		void SetDTFormat(const char* newFormatStr);
 
 	private:
 
+		/** 
+		 * Starts a new line in log file.
+		 * Inserts current date and time string.
+		 */
 		void newLine();
 	};
 
