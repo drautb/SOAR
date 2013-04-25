@@ -25,9 +25,9 @@ DateTime* DateTime::GetInstance()
 	return &instance;
 }
 
-char* DateTime::GetFormatted(const string& formatStr)
+char* DateTime::GetFormatted(const char* formatStr)
 {
-	strftime(formattedTime, MAX_STR_LENGTH, formatStr.c_str(), timeInfo);
+	strftime(formattedTime, MAX_STR_LENGTH, formatStr, timeInfo);
 
 	return formattedTime;
 }
@@ -35,5 +35,5 @@ char* DateTime::GetFormatted(const string& formatStr)
 void DateTime::refresh()
 {
 	time(&timeSeconds);
-	localtime_s(timeInfo, &timeSeconds);
+	timeInfo = localtime(&timeSeconds);
 }

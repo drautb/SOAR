@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <exception>
@@ -11,21 +12,28 @@ using namespace SOAR;
 
 const char* const Log::LOG_FILENAME = "messages.log";
 
+const char* const Log::MSG_LEVEL_STR[] = 
+{
+	"FATAL ERROR",
+	"RECOVERABLE ERROR",
+	"WARNING",
+	"NOTICE",
+	"MESSAGE"
+};
+
 Log::Log()
 {
 	formatStr = "%x %X";
 
+	filterLevel = DEFAULT_FILTER_LEVEL;
+
 	output.clear();
+	trash.clear();
 }
 
 Log::~Log()
 {
-	ofstream outputFile(LOG_FILENAME, ios_base::app);
-	if (outputFile.good()) 
-	{
-		newLine();
-		outputFile << output.str();
-	}
+	Flush();
 }
 
 Log* Log::GetInstance() 
@@ -35,9 +43,23 @@ Log* Log::GetInstance()
 	return &instance;
 }
 
-stringstream& Log::Output()
+stringstream& Log::Message(MessageLevel priorityLevel)
 {
+	// Check if need to flush
+	if (output.str().size() > MAX_LENGTH_BEFORE_FLUSH)
+		Flush();
+
+	if (priorityLevel > filterLevel)
+		return trash;
+
+	newLine(priorityLevel);
+
 	return output;
+}
+
+void Log::SetFilterLevel(MessageLevel newFilter)
+{
+	filterLevel = newFilter;
 }
 
 void Log::SetDTFormat(const char* newFormatStr)
@@ -45,7 +67,31 @@ void Log::SetDTFormat(const char* newFormatStr)
 	formatStr = newFormatStr;
 }
 
-void Log::newLine()
+void Log::Flush()
 {
-	output << endl << "[" << DateTime::GetInstance()->GetFormatted(formatStr) << "]";
+	saveToFile();
+}
+
+void Log::newLine(MessageLevel priorityLevel)
+{
+	if (priorityLevel == NO_LOGGING)
+		return;
+
+	output << endl;
+	output << "[" << DateTime::GetInstance()->GetFormatted(formatStr.c_str()) << "]";
+	output << "[" << MSG_LEVEL_STR[priorityLevel] << "] ";
+}
+
+void Log::saveToFile()
+{
+	ofstream outputFile(LOG_FILENAME, ios_base::app);
+	if (outputFile.good()) 
+	{
+		outputFile << output.str();
+
+		outputFile.flush();
+		outputFile.close();
+
+		output.clear();
+	}
 }

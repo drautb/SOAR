@@ -39,7 +39,7 @@ namespace SOAR
 		 * See here for available format options:
 		 * http://www.cplusplus.com/reference/ctime/strftime/
 		 */
-		char* GetFormatted(const std::string& formatStr="%x %X");
+		char* GetFormatted(const char* formatStr="%x %X");
 
 	private:
 
