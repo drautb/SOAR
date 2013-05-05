@@ -7,21 +7,36 @@
 
 using namespace std;
 
+// Some helpful Macros
+#define	LOG_FATAL				Log::GetInstance()->Message(Log::MessageLevel::FATAL_ERROR) 
+#define	LOG_RECOVERABLE			Log::GetInstance()->Message(Log::MessageLevel::RECOVERABLE_ERROR)
+#define	LOG_WARNING				Log::GetInstance()->Message(Log::MessageLevel::WARNING)
+#define	LOG_NOTICE				Log::GetInstance()->Message(Log::MessageLevel::NOTICE)
+#define	LOG_MESSAGE				Log::GetInstance()->Message(Log::MessageLevel::MESSAGE)
+
+#define SOAR_HEADER				"[SOAR:" << __FILE__ << ":" << __LINE__ << "] "
+#define	SOAR_LOG_FATAL			Log::GetInstance()->Message(Log::MessageLevel::FATAL_ERROR) << SOAR_HEADER
+#define	SOAR_LOG_RECOVERABLE	Log::GetInstance()->Message(Log::MessageLevel::RECOVERABLE_ERROR) << SOAR_HEADER
+#define	SOAR_LOG_WARNING		Log::GetInstance()->Message(Log::MessageLevel::WARNING) << SOAR_HEADER
+#define	SOAR_LOG_NOTICE			Log::GetInstance()->Message(Log::MessageLevel::NOTICE) << SOAR_HEADER
+#define	SOAR_LOG_MESSAGE		Log::GetInstance()->Message(Log::MessageLevel::MESSAGE) << SOAR_HEADER
+
 namespace SOAR
 {
 
 	/**
-	 * A log class implemented as a singleton. 
-	 * The class internally maintains a stringstream 
-	 * object which is what is actually 'written' to by the class. In this
-	 * class's destructor it appends/writes the stringstream to the log file.
+	 * Used to log errors, warnings, or messages to file.
+	 *
+	 *	@author	Ben Draut
+	 *	@date	April 2013
+	 *
 	 */
 	class Log
 	{
 	public:
 
 		/**
-		 * Levels of messages that can be logged
+		 * Levels Priority Levels
 		 */
 		enum MessageLevel
 		{
@@ -34,23 +49,19 @@ namespace SOAR
 		};
 
 	private:
-		/**
-		 * Constant for log filename
-		 */
+		
 		static const char* const		LOG_FILENAME;
-
-		/**
-		 * String represenatations of each message level
-		 */
 		static const char* const		MSG_LEVEL_STR[];
 	
+		static const MessageLevel		DEFAULT_FILTER_LEVEL = WARNING;
+
+		const static int				MAX_LENGTH_BEFORE_FLUSH = 1000;
+
 		/** 
 		 * Message level filter. Messages with a priority level greater than
 		 * this level will not be logged.
 		 */
 		MessageLevel					filterLevel;
-
-		static const MessageLevel		DEFAULT_FILTER_LEVEL = WARNING;
 
 		/**
 		 * Format String to use for date/time in the logfile
@@ -61,8 +72,6 @@ namespace SOAR
 		 * Output stream
 		 */
 		stringstream					output;
-
-		const static int				MAX_LENGTH_BEFORE_FLUSH = 1000;
 
 		/**
 		 * Trash stream for messages that won't be logged.
@@ -114,14 +123,18 @@ namespace SOAR
 	private:
 
 		/** 
-		 * This method starts a new line in the log file. The beginning 
-		 * of the line will contain a Date/Time stamp as well as an 
-		 * indicator of the message level.
+		 * Ends the current line in the file inserts [Date/Time][Priority Leve].
+		 * 
+		 *	@param	MessageLevel	priorityLevel	The priority level of this line.
+		 *	@return	none
+		 *
 		 */
 		void newLine(MessageLevel priorityLevel);
 
 		/**
-		 * This method will write the current output stream to file and then clear it.
+		 * Saves output to LOG_FILENAME
+		 *
+		 *	@return	none
 		 */
 		void saveToFile();
 	};

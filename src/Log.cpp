@@ -49,6 +49,7 @@ stringstream& Log::Message(MessageLevel priorityLevel)
 	if (output.str().size() > MAX_LENGTH_BEFORE_FLUSH)
 		Flush();
 
+	trash.clear();
 	if (priorityLevel > filterLevel)
 		return trash;
 
@@ -79,7 +80,7 @@ void Log::newLine(MessageLevel priorityLevel)
 
 	output << endl;
 	output << "[" << DateTime::GetInstance()->GetFormatted(formatStr.c_str()) << "]";
-	output << "[" << MSG_LEVEL_STR[priorityLevel] << "] ";
+	output << "[" << MSG_LEVEL_STR[priorityLevel] << "]";
 }
 
 void Log::saveToFile()
