@@ -23,7 +23,7 @@ Database::~Database()
 
 bool Database::Prepare(const char* query)
 {
-	lastReturnCode = sqlite3_prepare_v2(db, query, 0, &stmt, NULL);
+	lastReturnCode = sqlite3_prepare_v2(db, query, -1, &stmt, NULL);
 
 	if (lastReturnCode == SQLITE_OK)
 		return true;
@@ -64,7 +64,14 @@ void Database::Done()
 
 bool Database::connect(const char* dbFilename, int flags)
 {
-	return sqlite3_open_v2(dbFilename, &db, flags, NULL) == SQLITE_OK;
+	lastReturnCode = sqlite3_open_v2(dbFilename, &db, flags, NULL);
+
+	if (lastReturnCode == SQLITE_OK)
+		return true;
+
+	SOAR_LOG_FATAL << SQLITE3_ERROR_STR(lastReturnCode) << "failed connect to database.";
+
+	return false;
 }
 
 bool Database::close()
