@@ -93,6 +93,6 @@ void Log::saveToFile()
 		outputFile.flush();
 		outputFile.close();
 
-		output.clear();
+		output.str(""); // Empty the output stream
 	}
 }

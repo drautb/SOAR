@@ -42,10 +42,11 @@ namespace SOAR
 		{
 			NO_LOGGING = -1,
 			FATAL_ERROR = 0,
-			RECOVERABLE_ERROR,
-			WARNING,
-			NOTICE,
-			MESSAGE
+			RECOVERABLE_ERROR = 1,
+			WARNING = 2,
+			NOTICE = 3,
+			MESSAGE = 4,
+			LOG_ALL = 4
 		};
 
 	private:
