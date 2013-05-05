@@ -69,6 +69,14 @@ namespace SOAR
 		int GetInt(int columnIndex=0);
 
 		/**
+		 * Extract raw text from the current data row.
+		 *
+		 *	@param	int columnIndex			The index of the data column in the table.
+		 *	@return	const unsigned char*	The string of data requested
+		 */
+		const unsigned char* GetText(int columnIndex=0);
+
+		/**
 		 * Cleanup following the preparation and execution of a statement.
 		 */
 		void Done();

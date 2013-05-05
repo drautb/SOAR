@@ -57,6 +57,17 @@ int Database::GetInt(int columnIndex)
 	return sqlite3_column_int(stmt, columnIndex);
 }
 
+const unsigned char* Database::GetText(int columnIndex)
+{
+	if (lastReturnCode != SQLITE_ROW)
+	{
+		SOAR_LOG_RECOVERABLE << "a valid data row has not been retrieved.";
+		return 0;
+	}
+
+	return sqlite3_column_text(stmt, columnIndex);
+}
+
 void Database::Done()
 {
 	sqlite3_finalize(stmt);
