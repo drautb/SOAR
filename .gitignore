@@ -13,6 +13,7 @@ inc/sqlite3
 #################
 doc/doxygen/html
 doc/doxygen.log.txt
+doc/doxygen.errors.txt
 
 #################
 ## Eclipse
