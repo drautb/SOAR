@@ -1,0 +1,19 @@
+{
+	"folders":
+	[
+		{
+			"path": "/C/Dev/SOAR"
+		}
+	],
+	"settings":
+	{
+		"tab_size": 4
+	},
+	"build_systems":
+	[
+		{
+			"name": "Build VS Solution",
+			"cmd": ["C:\\Dev\\SOAR\\scripts\\build_sln.bat"]
+		}
+	]
+}
