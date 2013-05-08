@@ -21,7 +21,7 @@ Database::~Database()
 		SOAR_LOG_WARNING << "close() call failed.";
 }
 
-bool Database::Prepare(const char* query)
+bool Database::QueryData(const char* query)
 {
 	lastReturnCode = sqlite3_prepare_v2(db, query, -1, &stmt, NULL);
 
@@ -31,6 +31,17 @@ bool Database::Prepare(const char* query)
 	SOAR_LOG_RECOVERABLE << SQLITE3_ERROR_STR(lastReturnCode) << "failed to prepare statement from query: '" << query << "'";
 
 	return false;
+}
+
+int Database::Query(const char* query)
+{
+	if (!QueryData(query))
+		return -1;
+
+	if (!NextRow())
+		return -1;
+
+	return sqlite3_changes(db);
 }
 
 bool Database::NextRow()

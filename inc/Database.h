@@ -46,12 +46,21 @@ namespace SOAR
 		~Database();
 
 		/**
-		 * Prepares a statement to be evaluated from the given query.
+		 * Prepares a query to be executed that will return some data set. If succesful,
+		 * data should be accessed using NextRow() and Get*() methods.
 		 *
 		 *	@param	const char*	query	The query string to prepare.
 		 *	@return	bool		true if statement was prepared succesfully, false otherwise.
 		 */
-		bool Prepare(const char* query);
+		bool QueryData(const char* query);
+
+		/**
+		 * Executes a query that is not expected to return a data set. (i.e. Insert, Update, Delete)
+		 * 
+		 *	@param	const char* query	The query string to execute
+		 *	@return int 				The number of rows affected, -1 on error.
+		 */
+		int Query(const char* query);
 
 		/**
 		 * Advances the current row of the given statement
