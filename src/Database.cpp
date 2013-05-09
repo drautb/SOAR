@@ -1,9 +1,13 @@
 #include <cstdlib>
+#include <fstream>
+#include <string>
 
 #include "..\inc\sqlite3\sqlite3.h"
 
 #include "..\inc\Database.h"
 #include "..\inc\Log.h"
+
+using namespace std;
 
 using namespace SOAR;
 
@@ -82,6 +86,30 @@ const unsigned char* Database::GetText(int columnIndex)
 void Database::Done()
 {
 	sqlite3_finalize(stmt);
+}
+
+bool Database::ImportFile(const char* filename)
+{
+	ifstream file(filename);
+	
+	if (!file)
+	{
+		SOAR_LOG_WARNING << "Failed to open " << filename;
+		return false;
+	}
+
+	stringstream fileContents;
+	fileContents << file.rdbuf();
+	file.close();
+
+	lastReturnCode = sqlite3_exec(db, fileContents.str().c_str(), NULL, NULL, NULL);
+
+	if (lastReturnCode == SQLITE_OK)
+		return true;
+	
+	SOAR_LOG_WARNING << "Failed to import " << filename;
+
+	return false;
 }
 
 bool Database::connect(const char* dbFilename, int flags)

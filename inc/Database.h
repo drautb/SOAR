@@ -90,6 +90,14 @@ namespace SOAR
 		 */
 		void Done();
 
+		/**
+		 * Executes all statements in a .sql file on the current database
+		 * 
+		 * @param  filename The .sql file to import
+		 * @return          True if all queries in filename were succesfully executed, false otherwise.
+		 */
+		bool ImportFile(const char *filename);
+
 	private:
 
 		/**
