@@ -126,7 +126,7 @@ namespace SOAR
 		/** 
 		 * Ends the current line in the file inserts [Date/Time][Priority Leve].
 		 * 
-		 *	@param	MessageLevel	priorityLevel	The priority level of this line.
+		 *	@param	priorityLevel	The priority level of this line.
 		 *	@return	none
 		 *
 		 */
