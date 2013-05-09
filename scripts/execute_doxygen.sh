@@ -1,10 +1,13 @@
 #!/bin/sh
 
 readonly ROOT_DIR="C:\Dev\SOAR"
+readonly DOC_DIR="$ROOT_DIR\doc"
 
-readonly DOXYFILE="$ROOT_DIR\doc\doxygen\doxyfile"
-readonly LOG_FILE="$ROOT_DIR\doc\doxygen.log.txt"
-readonly ERROR_FILE="$ROOT_DIR\doc\doxygen.errors.txt"
+readonly DOXYFILE="$DOC_DIR\doxygen\doxyfile"
+readonly LOG_FILE="$DOC_DIR\doxygen.log.txt"
+readonly ERROR_FILE="$DOC_DIR\doxygen.errors.txt"
+
+rm -rf "$DOC_DIR\html"
 
 :>$LOG_FILE
 :>$ERROR_FILE

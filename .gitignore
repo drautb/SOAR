@@ -1,4 +1,9 @@
 #################
+## Sublime
+#################
+*.sublime-workspace
+
+#################
 ## SQLite3 Files
 #################
 inc/sqlite3
