@@ -112,6 +112,11 @@ bool Database::ImportFile(const char* filename)
 	return false;
 }
 
+int Database::Status()const
+{
+	return lastReturnCode;
+}
+
 bool Database::connect(const char* dbFilename, int flags)
 {
 	lastReturnCode = sqlite3_open_v2(dbFilename, &db, flags, NULL);

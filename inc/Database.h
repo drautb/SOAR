@@ -98,6 +98,12 @@ namespace SOAR
 		 */
 		bool ImportFile(const char *filename);
 
+		/**
+		 * Determine the internal status of this database.
+		 * @return sqlite3 result code. SQLITE_OK (0), or an error code.
+		 */	
+		int Status()const;
+
 	private:
 
 		/**
