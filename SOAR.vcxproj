@@ -93,6 +93,8 @@
     <ClInclude Include="inc\Log.h" />
     <ClInclude Include="inc\Rectangle.h" />
     <ClInclude Include="inc\Timer.h" />
+    <ClInclude Include="inc\Macros.h" />
+    <ClInclude Include="inc\MD5.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Database.cpp" />
@@ -101,6 +103,7 @@
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Timer.cpp" />
+    <ClCompile Include="src\MD5.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,7 +12,7 @@
 	"build_systems":
 	[
 		{
-			"name": "Build VS Solution",
+			"name": "Build SOAR",
 			"cmd": ["C:\\Dev\\SOAR\\scripts\\build_sln.bat"]
 		}
 	]
