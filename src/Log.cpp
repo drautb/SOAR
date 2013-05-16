@@ -4,8 +4,8 @@
 #include <exception>
 #include <ctime>
 
-#include "../inc/Log.h"
-#include "../inc/DateTime.h"
+#include "Log.h"
+#include "DateTime.h"
 
 using namespace std;
 using namespace SOAR;

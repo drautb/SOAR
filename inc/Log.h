@@ -56,7 +56,7 @@ namespace SOAR
 	
 		static const MessageLevel		DEFAULT_FILTER_LEVEL = WARNING;
 
-		const static int				MAX_LENGTH_BEFORE_FLUSH = 1000;
+		const static unsigned int		MAX_LENGTH_BEFORE_FLUSH = 1000;
 
 		/** 
 		 * Message level filter. Messages with a priority level greater than

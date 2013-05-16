@@ -22,7 +22,7 @@ mentioning or referencing the derived work.
 
 RSA Data Security, Inc. makes no representations concerning either
 the merchantability of this software or the suitability of this
-software for any particular purpose. It is provided "as is"
+software for any particular purpose. It is providls -ed "as is"
 without express or implied warranty of any kind.
 
 These notices must be retained in any copies of any part of this
@@ -31,10 +31,10 @@ documentation and/or software.
 */
 
 /* interface header */
-#include "../inc/MD5.h"
+#include "MD5.h"
 
 /* system implementation headers */
-#include <stdio.h>
+#include <cstdio>
 
 using namespace SOAR;
 
@@ -60,11 +60,11 @@ using namespace SOAR;
 
 // F, G, H and I are basic MD5 functions.
 inline MD5::uint4 MD5::F(uint4 x, uint4 y, uint4 z) {
-	return x&y | ~x&z;
+	return (x&y) | (~x&z);
 }
 
 inline MD5::uint4 MD5::G(uint4 x, uint4 y, uint4 z) {
-	return x&z | y&~z;
+	return (x&z) | (y&~z);
 }
 
 inline MD5::uint4 MD5::H(uint4 x, uint4 y, uint4 z) {

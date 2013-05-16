@@ -1,7 +1,7 @@
 #include <ctime>
-#include <string>
+#include <cstring>
 
-#include "..\inc\DateTime.h"
+#include "DateTime.h"
 
 using namespace std;
 using namespace SOAR;

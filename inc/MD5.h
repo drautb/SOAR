@@ -37,7 +37,7 @@ documentation and/or software.
 #ifndef BZF_MD5_H
 #define BZF_MD5_H
 
-#include <string>
+#include <cstring>
 #include <iostream>
 
 namespace SOAR

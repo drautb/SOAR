@@ -1,17 +1,19 @@
 #include <cstdlib>
 #include <fstream>
-#include <string>
+#include <cstring>
 
-#include "..\inc\sqlite3\sqlite3.h"
+#include <sqlite3.h>
 
-#include "..\inc\Database.h"
-#include "..\inc\Log.h"
+#include "Database.h"
+#include "Log.h"
 
 using namespace std;
 
 using namespace SOAR;
 
-#define SQLITE3_ERROR_STR(code)	"sqlite3 error: " << sqlite3_errstr(code) << "(" << code << "):"
+// Apparently sqlite3_errstr is pretty new.
+//#define SQLITE3_ERROR_STR(code)	"sqlite3 error: " << sqlite3_errstr(code) << "(" << code << "):"
+#define SQLITE3_ERROR_STR(code)		"sqlite3 error: " << sqlite3_errmsg(db) << "(" << sqlite3_errcode(db) << "):"
 
 Database::Database(const char* dbFilename, int flags)
 {
