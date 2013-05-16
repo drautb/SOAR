@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-readonly DOC_DIR="C:\Dev\SOAR\doc"
+readonly DOC_DIR="/home/drautb/GitHub/SOAR/doc"
 
-readonly DOXYFILE="$DOC_DIR\doxygen\doxyfile"
-readonly LOG_FILE="$DOC_DIR\doxygen.log.txt"
-readonly ERROR_FILE="$DOC_DIR\doxygen.errors.txt"
+readonly DOXYFILE="$DOC_DIR/doxygen/doxyfile"
+readonly LOG_FILE="$DOC_DIR/doxygen.log.txt"
+readonly ERROR_FILE="$DOC_DIR/doxygen.errors.txt"
 
 rm -rf $DOC_DIR/doxygen/html
 
