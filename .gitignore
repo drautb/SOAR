@@ -1,4 +1,12 @@
 #################
+## CMake
+#################
+CMakeFiles/
+CMakeCache.txt
+Makefile
+*.cmake
+
+#################
 ## Sublime
 #################
 *.sublime-workspace
@@ -12,6 +20,7 @@ inc/sqlite3
 ## Lib Files
 #################
 *.lib
+*.a
 
 #################
 ## Doxygen
@@ -159,7 +168,7 @@ Desktop.ini
 *.egg
 *.egg-info
 dist
-build
+#build ## Need for CMakeLists.txt
 eggs
 parts
 bin
