@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Generating Documentation..."
+
 readonly DOC_DIR="/home/drautb/GitHub/SOAR/doc"
 
 readonly DOXYFILE="$DOC_DIR/doxygen/doxyfile"
@@ -12,3 +14,6 @@ rm -rf $DOC_DIR/doxygen/html
 :>$ERROR_FILE
 
 doxygen $DOXYFILE > $LOG_FILE 2>$ERROR_FILE
+
+echo "Finished."
+
