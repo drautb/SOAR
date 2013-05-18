@@ -29,6 +29,8 @@ Database::~Database()
 
 bool Database::QueryData(const char* query)
 {
+	Done();
+
 	lastReturnCode = sqlite3_prepare_v2(db, query, -1, &stmt, NULL);
 
 	if (lastReturnCode == SQLITE_OK)
@@ -41,6 +43,8 @@ bool Database::QueryData(const char* query)
 
 int Database::Query(const char* query)
 {
+	Done();
+
 	if (!QueryData(query))
 		return -1;
 
@@ -72,6 +76,11 @@ int Database::GetInt(int columnIndex)
 	}
 
 	return sqlite3_column_int(stmt, columnIndex);
+}
+
+bool Database::GetBool(int columnIndex)
+{
+	return GetInt(columnIndex) > 0;
 }
 
 const unsigned char* Database::GetText(int columnIndex)

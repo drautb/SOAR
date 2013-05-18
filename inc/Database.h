@@ -78,6 +78,13 @@ namespace SOAR
 		int GetInt(int columnIndex=0);
 
 		/**
+		 * Extract a boolean from the current data row.
+		 * @param  columnIndex The index of the table column containing the desired data.
+		 * @return             The value requested.
+		 */
+		bool GetBool(int columnIndex=0);
+
+		/**
 		 * Extract raw text from the current data row.
 		 *
 		 *	@param	columnIndex			The index of the data column in the table.
