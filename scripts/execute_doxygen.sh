@@ -2,7 +2,7 @@
 
 echo "Generating Documentation..."
 
-readonly DOC_DIR="/home/drautb/GitHub/SOAR/doc"
+readonly DOC_DIR="/home/drautb/Dropbox/GitHub/SOAR/doc"
 
 readonly DOXYFILE="$DOC_DIR/doxygen/doxyfile"
 readonly LOG_FILE="$DOC_DIR/doxygen.log.txt"
