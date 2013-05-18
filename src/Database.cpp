@@ -43,8 +43,6 @@ bool Database::QueryData(const char* query)
 
 int Database::Query(const char* query)
 {
-	Done();
-
 	if (!QueryData(query))
 		return -1;
 
