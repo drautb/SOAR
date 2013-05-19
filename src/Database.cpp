@@ -29,8 +29,6 @@ Database::~Database()
 
 bool Database::QueryData(const char* query)
 {
-	Done();
-
 	lastReturnCode = sqlite3_prepare_v2(db, query, -1, &stmt, NULL);
 
 	if (lastReturnCode == SQLITE_OK)
