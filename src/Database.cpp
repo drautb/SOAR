@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <cstring>
+#include <string>
 
 #include <sqlite3.h>
 
@@ -88,6 +89,11 @@ const unsigned char* Database::GetText(int columnIndex)
 	}
 
 	return sqlite3_column_text(stmt, columnIndex);
+}
+
+string Database::GetString(int columnIndex)
+{
+	return reinterpret_cast<const char*>(GetText(columnIndex));
 }
 
 void Database::Done()

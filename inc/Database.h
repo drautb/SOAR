@@ -2,6 +2,7 @@
 #define DATABASE_H
 
 #include <sqlite3.h>
+#include <string>
 
 namespace SOAR
 {
@@ -91,6 +92,13 @@ namespace SOAR
 		 *	@return	The string of data requested
 		 */
 		const unsigned char* GetText(int columnIndex=0);
+
+		/**
+		 * Extract raw text from the current data row as a std::string.
+		 * @param  columnIndex The index of the data column in the table
+		 * @return             A std::string containing the data requested
+		 */
+		std::string GetString(int columnIndex=0);
 
 		/**
 		 * Cleanup following the preparation and execution of a statement.
