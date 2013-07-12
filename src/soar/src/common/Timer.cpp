@@ -1,6 +1,6 @@
 #include <ctime>
 
-#include "../inc/Timer.h"
+#include "Timer.h"
 
 using namespace SOAR;
 

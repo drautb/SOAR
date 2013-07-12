@@ -1,5 +1,5 @@
-#include "../inc/FPSCounter.h"
-#include "../inc/Timer.h"
+#include "FPSCounter.h"
+#include "Timer.h"
 
 using namespace SOAR;
 

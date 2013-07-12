@@ -5,48 +5,70 @@ project(SOAR)
 #############################
 # Select Build Type
 #############################
-# set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE Debug)
+# set(CMAKE_BUILD_TYPE Release)
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../lib/${CMAKE_BUILD_TYPE})
+#############################
+# Select Platform
+#############################
+# set(CFG_PLATFORM windows)
+# set(CFG_PLATFORM mac)
+set(CFG_PLATFORM linux)
+
+#############################
+# Set lots of variables
+#############################
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../lib/${CFG_PLATFORM}/${CMAKE_BUILD_TYPE})
+
+set(CMAKE_CXX_FLAGS_DEBUG "-DCFG_DEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE "-DCFG_RELEASE")
+
+set(SOAR_PATH_TO_INC ${CMAKE_SOURCE_DIR}/../src/soar/inc)
+set(SOAR_PATH_TO_SRC ${CMAKE_SOURCE_DIR}/../src/soar/src)
+
+set(COMMON_DIR common)
+set(WINDOWS_DIR windows)
+set(MAC_DIR mac)
+set(LINUX_DIR linux)
+
+find_path(SQLITE3_INCLUDE_DIR sqlite3.h)
+find_library(SQLITE3_LIBRARY sqlite3)
+
+include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/")
+include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}")
+
+set(COMMON_SRCS
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/Log.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/Rectangle.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/Timer.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/MD5.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/DateTime.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/FPSCounter.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/Database.cpp)
+
+set(WINDOWS_SRCS )
+
+set(MAC_SRCS )
+
+set(LINUX_SRCS )
+
+if (CFG_PLATFORM STREQUAL WINDOWS_DIR)
+    add_definitions("-DWINDOWS")
+    set(ALL_SRCS ${COMMON_SRCS} ${WINDOWS_SRCS})
+elseif (CFG_PLATFORM STREQUAL MAC_DIR)
+    add_definitions("-DMACOSX")
+    set(ALL_SRCS ${COMMON_SRCS} ${MAC_SRCS})
+elseif (CFG_PLATFORM STREQUAL LINUX_DIR)
+    add_definitions("-DLINUX")
+    set(ALL_SRCS ${COMMON_SRCS} ${LINUX_SRCS})
+endif()
 
 add_definitions("-Wall")                # Give ALL the warnings!
 add_definitions("-Werror")              # Treat ALL The warnings as errors
 add_definitions("-pedantic-errors")     # Only allow standard-compliant code
 add_definitions("-std=c++11")           # Use the 2011 C++ Standard
 
-#############################
-# Select Platform
-#############################
-# set(CFG_PLATFORM Windows)
-# set(CFG_PLATFORM Mac)
-set(CFG_PLATFORM Linux)
-
-
-add_definitions("-DWINDOWS")
-add_definitions("-DMACOSX")
-add_definitions("-DLINUX")
-
-
-find_path(SQLITE3_INCLUDE_DIR sqlite3.h)
-find_library(SQLITE3_LIBRARY sqlite3)
-
-include_directories("${CMAKE_SOURCE_DIR}/../inc")
-
-add_library(SOAR STATIC
-	        ${CMAKE_SOURCE_DIR}/../src/Log.cpp
-	        ${CMAKE_SOURCE_DIR}/../src/Rectangle.cpp
-	        ${CMAKE_SOURCE_DIR}/../src/Timer.cpp
-	        ${CMAKE_SOURCE_DIR}/../src/MD5.cpp
-	        ${CMAKE_SOURCE_DIR}/../src/DateTime.cpp
-	        ${CMAKE_SOURCE_DIR}/../src/FPSCounter.cpp
-	        ${CMAKE_SOURCE_DIR}/../src/Database.cpp
-)
-
-get_cmake_property(_variableNames VARIABLES)
-foreach (_variableName ${_variableNames})
-    message(STATUS "${_variableName}=${${_variableName}}")
-endforeach()
+add_library(SOAR STATIC ${ALL_SRCS})
 
 target_link_libraries(SOAR 
                       ${SQLITE3_LIBRARY})

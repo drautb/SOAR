@@ -1,5 +1,5 @@
 
-#include "../inc/Rectangle.h"
+#include "Rectangle.h"
 
 using namespace SOAR;
 
