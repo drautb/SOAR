@@ -18,8 +18,13 @@ add_definitions("-std=c++11")           # Use the 2011 C++ Standard
 #############################
 # Select Platform
 #############################
-# add_definitions("-DWINDOWS")
-# add_definitions("-DMACOSX")
+# set(CFG_PLATFORM Windows)
+# set(CFG_PLATFORM Mac)
+set(CFG_PLATFORM Linux)
+
+
+add_definitions("-DWINDOWS")
+add_definitions("-DMACOSX")
 add_definitions("-DLINUX")
 
 
@@ -37,6 +42,11 @@ add_library(SOAR STATIC
 	        ${CMAKE_SOURCE_DIR}/../src/FPSCounter.cpp
 	        ${CMAKE_SOURCE_DIR}/../src/Database.cpp
 )
+
+get_cmake_property(_variableNames VARIABLES)
+foreach (_variableName ${_variableNames})
+    message(STATUS "${_variableName}=${${_variableName}}")
+endforeach()
 
 target_link_libraries(SOAR 
                       ${SQLITE3_LIBRARY})
