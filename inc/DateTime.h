@@ -46,7 +46,7 @@ namespace SOAR
 		void refresh();
 	};
 
-};
+}
 
 #endif
 
