@@ -44,7 +44,8 @@ set(COMMON_SRCS
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/MD5.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/DateTime.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/FPSCounter.cpp
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/Database.cpp)
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/Database.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/Keyboard.cpp)
 
 set(WINDOWS_SRCS )
 
