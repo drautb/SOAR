@@ -9,6 +9,9 @@
 
 using namespace std;
 
+#define KEY_STR(k)       SOAR::Keyboard::GetInstance().KeyToString(k)
+#define KEY_STR_LONG(k)  SOAR::Keyboard::GetInstance().KeyToString(k, true)
+
 void KeyboardCallback(GLFWwindow* window, int, int, int, int);
 
 namespace SOAR 
