@@ -3,6 +3,7 @@
 #include "Mouse.h"
 
 using namespace SOAR;
+using namespace Input;
 
 void MousePosCallback(GLFWwindow* window, double newXPos, double newYPos)
 {

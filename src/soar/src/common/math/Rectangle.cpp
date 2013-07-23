@@ -2,6 +2,7 @@
 #include "Rectangle.h"
 
 using namespace SOAR;
+using namespace Math;
 
 bool Rectangle::intersects(Rectangle const&other)const
 {

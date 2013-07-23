@@ -4,7 +4,9 @@
 #include "DateTime.h"
 
 using namespace std;
+
 using namespace SOAR;
+using namespace Time;
 
 DateTime::DateTime(void)
 {

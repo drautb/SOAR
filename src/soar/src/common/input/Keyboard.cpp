@@ -7,6 +7,7 @@
 using namespace std;
 
 using namespace SOAR;
+using namespace Input;
 
 void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -45,7 +46,7 @@ bool Keyboard::KeyIsHit(int key)
     return hit;
 }
 
-string Keyboard::KeyToString(int key, bool verbose)
+string& Keyboard::KeyToString(int key, bool verbose)
 {
     if (!stringReps.count(key))
         key = GLFW_KEY_UNKNOWN;

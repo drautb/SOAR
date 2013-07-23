@@ -3,6 +3,7 @@
 #include "Timer.h"
 
 using namespace SOAR;
+using namespace Time;
 
 Timer::Timer(time_t intervalInSeconds)
 {

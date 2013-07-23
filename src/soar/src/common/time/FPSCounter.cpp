@@ -2,6 +2,7 @@
 #include "Timer.h"
 
 using namespace SOAR;
+using namespace Time;
 
 FPSCounter::FPSCounter()
 {

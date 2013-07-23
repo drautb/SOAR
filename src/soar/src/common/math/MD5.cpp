@@ -37,6 +37,7 @@ documentation and/or software.
 #include <cstdio>
 
 using namespace SOAR;
+using namespace Math;
 
 // Constants for MD5Transform routine.
 #define S11 7

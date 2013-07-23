@@ -11,6 +11,7 @@
 using namespace std;
 
 using namespace SOAR;
+using namespace DB;
 
 // Apparently sqlite3_errstr is pretty new.
 //#define SQLITE3_ERROR_STR(code)	"sqlite3 error: " << sqlite3_errstr(code) << "(" << code << "):"

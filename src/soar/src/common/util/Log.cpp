@@ -9,6 +9,8 @@
 
 using namespace std;
 using namespace SOAR;
+using namespace Util;
+using namespace Time;
 
 const char* const Log::LOG_FILENAME = "messages.log";
 
