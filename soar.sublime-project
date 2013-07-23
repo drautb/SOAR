@@ -1,0 +1,38 @@
+{
+	"build_systems":
+	[
+		{
+			"cmd":
+			[
+				"make"
+			],
+			"name": "Build SOAR",
+			"working_dir": "${project_path}/build/",
+
+			"variants": [
+				{
+					"name": "Clean",
+					"cmd": ["make", "clean"],
+					"working_dir": "${project_path}/build"
+				},
+				{
+					"name": "Generate Documentation",
+					"cmd": ["./execute_doxygen.sh"],
+					"working_dir": "${project_path}/scripts"
+				}
+			]
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "/home/drautb/Dropbox/GitHub/SOAR"
+		}
+	],
+	"settings":
+	{
+		"tab_size": 4,
+		"translate_tabs_to_spaces": true,
+		"line_endings": "unix"
+	}
+}
