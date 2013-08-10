@@ -39,6 +39,16 @@ namespace SOAR
 			 * Determines if this rectangle intersects other
 			 */
 			bool intersects(Rectangle const&other)const;
+
+			/**
+			 * Determines if this rectangle contains a certain point, including 
+			 * the edges of this rectangle.
+			 * @param px The X-coordinate of the point to test
+			 * @param py The Y-coordinate of the point to test
+			 * @return   True if this rectangle contains x,y, false otherwise.
+			 */
+			bool Contains(float px, float py)const;
+
 		};
 	}
 }

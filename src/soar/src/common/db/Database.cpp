@@ -52,6 +52,11 @@ int Database::Query(const char* query)
 	return sqlite3_changes(db);
 }
 
+int Database::GetIdOfLastInsert()
+{
+	return (int)sqlite3_last_insert_rowid(db);
+}
+
 bool Database::NextRow()
 {
 	lastReturnCode = sqlite3_step(stmt);

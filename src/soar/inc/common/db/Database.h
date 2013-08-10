@@ -65,6 +65,12 @@ namespace SOAR
 			int Query(const char* query);
 
 			/**
+			 * Returns the row id of the last row that was inserted.
+			 * @return The id of the last inserted row.
+			 */
+			int GetIdOfLastInsert();
+
+			/**
 			 * Advances the current row of the given statement
 			 *
 			 *	@return	true if a valid row was found and data can be extracted.

@@ -20,7 +20,7 @@ set(CFG_PLATFORM linux)
 #############################
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../lib/${CFG_PLATFORM}/${CMAKE_BUILD_TYPE})
 
-set(CMAKE_CXX_FLAGS_DEBUG "-DCFG_DEBUG")
+set(CMAKE_CXX_FLAGS_DEBUG "-DCFG_DEBUG -g")
 set(CMAKE_CXX_FLAGS_RELEASE "-DCFG_RELEASE")
 
 set(SOAR_PATH_TO_INC ${CMAKE_SOURCE_DIR}/../src/soar/inc)
@@ -35,6 +35,7 @@ find_path(SQLITE3_INCLUDE_DIR sqlite3.h)
 find_library(SQLITE3_LIBRARY sqlite3)
 
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/")
+include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/audio")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/db")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/input")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/math")
@@ -42,6 +43,7 @@ include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/time")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/util")
 
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}")
+include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/audio")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/db")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/input")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/math")
@@ -49,15 +51,15 @@ include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/time")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/util")
 
 set(COMMON_SRCS
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/Log.cpp
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/math/Rectangle.cpp
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/Timer.cpp
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/math/MD5.cpp
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/DateTime.cpp
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/FPSCounter.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/db/Database.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/input/Keyboard.cpp
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/input/Mouse.cpp)
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/input/Mouse.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/math/MD5.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/math/Rectangle.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/DateTime.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/FPSCounter.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/Timer.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/Log.cpp)
 
 set(WINDOWS_SRCS )
 

@@ -1,5 +1,8 @@
+#include <iostream>
 
 #include "Rectangle.h"
+
+using namespace std;
 
 using namespace SOAR;
 using namespace Math;
@@ -15,4 +18,15 @@ bool Rectangle::intersects(Rectangle const&other)const
 		return true;
 
 	return false;
+}
+
+bool Rectangle::Contains(float px, float py)const
+{
+    if (px >= x && 
+        px <= (x + width) && 
+        py >= y && 
+        py <= (y + height))
+        return true;
+
+    return false;
 }
