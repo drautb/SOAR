@@ -34,6 +34,11 @@ set(LINUX_DIR linux)
 find_path(SQLITE3_INCLUDE_DIR sqlite3.h)
 find_library(SQLITE3_LIBRARY sqlite3)
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GLFW glfw3)
+
+find_package(DevIL)
+
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/audio")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/db")
@@ -41,6 +46,7 @@ include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/input")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/math")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/time")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/util")
+include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/video")
 
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/audio")
@@ -49,6 +55,7 @@ include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/input")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/math")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/time")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/util")
+include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/video")
 
 set(COMMON_SRCS
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/db/Database.cpp
@@ -60,7 +67,9 @@ set(COMMON_SRCS
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/DateTime.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/FPSCounter.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/Timer.cpp
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/Log.cpp)
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/Log.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/StringUtils.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/Texture.cpp)
 
 set(WINDOWS_SRCS )
 
@@ -83,8 +92,14 @@ add_definitions("-Wall")                # Give ALL the warnings!
 add_definitions("-Werror")              # Treat ALL The warnings as errors
 add_definitions("-pedantic-errors")     # Only allow standard-compliant code
 add_definitions("-std=c++11")           # Use the 2011 C++ Standard
+add_definitions("-DILUT_USE_OPENGL")    # Tell DevIL to use OpenGL
+
 
 add_library(SOAR STATIC ${ALL_SRCS})
 
 target_link_libraries(SOAR 
-                      ${SQLITE3_LIBRARY})
+                      ${GLFW_STATIC_LIBRARIES}
+                      ${SQLITE3_LIBRARY}
+                      ${IL_LIBRARIES}
+                      ${ILU_LIBRARIES}
+                      ${ILUT_LIBRARIES})
