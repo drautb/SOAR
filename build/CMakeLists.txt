@@ -31,6 +31,9 @@ set(WINDOWS_DIR windows)
 set(MAC_DIR mac)
 set(LINUX_DIR linux)
 
+#############################
+# Include a bunch of libs
+#############################
 find_path(SQLITE3_INCLUDE_DIR sqlite3.h)
 find_library(SQLITE3_LIBRARY sqlite3)
 
@@ -39,8 +42,10 @@ pkg_check_modules(GLFW glfw3)
 
 find_package(DevIL)
 
+
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/audio")
+include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/content")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/db")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/input")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/math")
@@ -50,6 +55,7 @@ include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/video")
 
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/audio")
+include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/content")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/db")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/input")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/math")
@@ -58,6 +64,7 @@ include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/util")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/video")
 
 set(COMMON_SRCS
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/content/ContentManager.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/db/Database.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/input/Keyboard.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/input/Mouse.cpp
@@ -93,7 +100,6 @@ add_definitions("-Werror")              # Treat ALL The warnings as errors
 add_definitions("-pedantic-errors")     # Only allow standard-compliant code
 add_definitions("-std=c++11")           # Use the 2011 C++ Standard
 add_definitions("-DILUT_USE_OPENGL")    # Tell DevIL to use OpenGL
-
 
 add_library(SOAR STATIC ${ALL_SRCS})
 

@@ -9,17 +9,21 @@
 using namespace SOAR;
 using namespace Video;
 
-Texture::Texture()
-{
-
-}
-
-GLuint Texture::Load(const char* filename)
+bool Texture::Load(const char* filename)
 {
     char* nonConstName = Util::StringUtils::RemoveConst(filename);
-    GLuint textureHandle = ilutGLLoadImage(nonConstName);
+    textureHandle = ilutGLLoadImage(nonConstName);
     free(nonConstName);
 
-    return textureHandle;
+    return glIsTexture(textureHandle);
 }
 
+bool Texture::Release()
+{
+    return true;
+}
+
+const GLuint& Texture::Handle()const
+{
+    return textureHandle;
+}
