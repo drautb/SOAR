@@ -81,6 +81,17 @@ int Database::GetInt(int columnIndex)
 	return sqlite3_column_int(stmt, columnIndex);
 }
 
+long Database::GetLong(int columnIndex)
+{
+	if (lastReturnCode != SQLITE_ROW)
+	{
+		SOAR_LOG_RECOVERABLE << "a valid data row has not been retrieved.";
+		return -1;
+	}
+
+	return sqlite3_column_int64(stmt, columnIndex);
+}
+
 bool Database::GetBool(int columnIndex)
 {
 	return GetInt(columnIndex) > 0;

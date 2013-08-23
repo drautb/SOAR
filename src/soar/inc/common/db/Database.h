@@ -86,6 +86,14 @@ namespace SOAR
 			int GetInt(int columnIndex=0);
 
 			/**
+			 * Extract a long from the current data row.
+			 * 
+			 * @param  columnIndex The index of the column in the table to extract the data from.
+			 * @return             The value requested, or -1 on error.
+			 */
+			long GetLong(int columnIndex=0);
+
+			/**
 			 * Extract a boolean from the current data row.
 			 * @param  columnIndex The index of the table column containing the desired data.
 			 * @return             The value requested.

@@ -54,6 +54,7 @@ set(COMMON_SRCS
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/db/Database.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/input/Keyboard.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/input/Mouse.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/math/Clamp.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/math/MD5.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/math/Rectangle.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/DateTime.cpp
