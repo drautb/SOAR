@@ -17,6 +17,7 @@ char* StringUtils::RemoveConst(const char* str)
     int length = strlen(str);
 
     copy = (char*)malloc(length + 1);
+    strcpy(copy, str);
     copy[length] = '\0';
 
     return copy;
