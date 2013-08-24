@@ -76,7 +76,8 @@ set(COMMON_SRCS
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/Timer.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/Log.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/StringUtils.cpp
-    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/Texture.cpp)
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/Texture.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/WindowManager.cpp)
 
 set(WINDOWS_SRCS )
 
