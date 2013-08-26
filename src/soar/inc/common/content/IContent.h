@@ -10,7 +10,8 @@ namespace SOAR
         public:
             virtual ~IContent(){}
 
-            virtual bool Load(const char* filename)=0;
+            virtual bool LoadFile(const char* filename)=0;
+            virtual bool LoadRaw(const unsigned char* data, int size)=0;
             virtual bool Release()=0;       
         };
     }

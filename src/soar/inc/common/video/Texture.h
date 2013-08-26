@@ -1,6 +1,9 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#include <IL/il.h>
+#include <IL/ilu.h>
+#include <IL/ilut.h>
 #include <GLFW/glfw3.h>
 
 #include <content/IContent.h>
@@ -47,13 +50,20 @@ namespace SOAR
             static void UseTarget(GLenum target);
 
             /**
-             * This method simply loads the texture specified, and returns
-             * a GLuint handle to it. It automatically tries to load it as nicely
-             * as possible. (Using DevIL)
+             * This method simply loads the texture specified.
+             * It automatically tries to load it as nicely as possible. (Using DevIL)
              * @param  filename     The name/path of the texture to load
              * @return              A GLuint handle to the loaded texture
              */
-            virtual bool Load(const char* filename);
+            virtual bool LoadFile(const char* filename);
+
+            /**
+             * This method simply loads a texture from a raw c array of data,
+             * and returns true if it was successful.
+             * @param  data The data array to load
+             * @return      true on success, false otherwise
+             */
+            virtual bool LoadRaw(const unsigned char* data, int size);
 
             /**
              * Nothing needs to be released for textures right now, 
@@ -67,6 +77,23 @@ namespace SOAR
              * @return textureHandle
              */
             const GLuint& Handle()const;
+
+        private:
+
+            /**
+             * Just a subroutine to generate an ILuint texture id
+             * @return  The generated il Txture id
+             */
+            ILuint generateILTextureId();
+
+            /**
+             * Another subroutine that takes a loaded ILuint texture,
+             * and creates an OpenGL texture from it, storing the result
+             * in this->textureHandle
+             * @param   ilTexId The ilTexture to clean up with when done.
+             */
+            void ilTextureToGL(ILuint ilTexId);
+
         };
     }
 }

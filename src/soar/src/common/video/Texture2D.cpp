@@ -17,9 +17,23 @@ Texture2D::~Texture2D()
 
 }
 
-bool Texture2D::Load(const char* filename)
+bool Texture2D::LoadFile(const char* filename)
 {
-    if (Texture::Load(filename))
+    if (Texture::LoadFile(filename))
+    {
+        glBindTexture(target, textureHandle);
+        glGetTexLevelParameteriv(target, 0, GL_TEXTURE_WIDTH, &width);
+        glGetTexLevelParameteriv(target, 0, GL_TEXTURE_HEIGHT, &height);
+
+        return true;
+    }
+
+    return false;
+}
+
+bool Texture2D::LoadRaw(const unsigned char* data, int size)
+{
+    if (Texture::LoadRaw(data, size))
     {
         glBindTexture(target, textureHandle);
         glGetTexLevelParameteriv(target, 0, GL_TEXTURE_WIDTH, &width);

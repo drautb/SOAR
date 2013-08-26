@@ -52,19 +52,41 @@ namespace SOAR
              * @return          True of the load was successful, false otherwise
              */
             template<typename T>
-            bool Load(int id, const char* filename)
+            bool LoadFile(int id, const char* filename)
             {
-                T* content = new T();
-                contentIndex[id] = content;
+                T* content = createIndexEntry<T>(id);
 
-                if (content->Load(filename))
+                if (content->LoadFile(filename))
                     return true;
 
-                delete content;
-                contentIndex[id] = nullptr;
+                destroyIndexEntry(id);
                 return false;
             }
 
+            /**
+             * This method loads a new piece of content into the 
+             * manager from a raw c array of data.
+             * @param  id   The ID to use to refer to this content
+             * @param  data The data array to load the content from
+             * @return      True if the load was successful, flase otherwise.
+             */
+            template<typename T>
+            bool LoadRaw(int id, const unsigned char* data, int size)
+            {
+                T* content = createIndexEntry<T>(id);
+
+                if (content->LoadRaw(data, size))
+                    return true;
+
+                destroyIndexEntry(id);
+                return false;
+            }
+
+            /**
+             * This method returns a handle to a piece of content
+             * @param  id The id of the content to get a handle for
+             * @return    A handle to the content if id is valid, nullptr if not
+             */
             template<typename T>
             T* Handle(int id)
             {
@@ -89,6 +111,31 @@ namespace SOAR
              * @return    True if contentIndex[id] has something.
              */
             bool hasKey(int id);
+
+            /**
+             * This method takes care of putting a new entry in the index.
+             * If an entry already exists, it destroys it properly.
+             * @param  id The id of the new entry
+             * @return    A pointer to the new entry's content
+             */
+            template <typename T>
+            T* createIndexEntry(int id)
+            {
+                if (hasKey(id))
+                    destroyIndexEntry(id);
+
+                T* content = new T();
+                contentIndex[id] = content;
+
+                return content;
+            }
+
+            /**
+             * This method properly destroys an entry in the index,
+             * taking care to release the resources properly.
+             * @param id The id of the content to destroy
+             */
+            void destroyIndexEntry(int id);
 
         };
     }

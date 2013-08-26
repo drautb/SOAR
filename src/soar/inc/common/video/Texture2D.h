@@ -47,7 +47,15 @@ namespace SOAR
              * @param  filename The texture file to load
              * @return          True if successful, false otherwise.
              */
-            virtual bool Load(const char* filename);
+            virtual bool LoadFile(const char* filename);
+
+            /**
+             * Loads the texture from a raw data array invoking the parent
+             * method, thens populates width/height.
+             * @param  data The data array containing the texture
+             * @return      True on success, false otherwise.
+             */
+            virtual bool LoadRaw(const unsigned char* data, int size);
 
             /**
              * Renders this texture at the specified coordinate.

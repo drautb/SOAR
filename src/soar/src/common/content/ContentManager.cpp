@@ -40,3 +40,14 @@ bool ContentManager::hasKey(int id)
 
     return false;
 }
+
+void ContentManager::destroyIndexEntry(int id)
+{
+    if (!hasKey(id))
+        return;
+
+    contentIndex[id]->Release();
+    
+    delete contentIndex[id];
+    contentIndex[id] = nullptr;
+}
