@@ -2,6 +2,10 @@
 #define TEXTURE_2D_H
 
 #include "Texture.h"
+#include <math/Rectangle.h>
+
+using namespace SOAR;
+using namespace Math;
 
 namespace SOAR
 {
@@ -51,6 +55,15 @@ namespace SOAR
              * @param y The y-coordinate
              */
             void Render(int x, int y);
+
+            /**
+             * The method renders just a subset of the texture to
+             * x, y, as specified by srcRect.
+             * @param x       Where to render in x
+             * @param y       Where to render in y
+             * @param srcRect The subset of the whole texture to render.
+             */
+            void Render(int x, int y, const Rectangle<int>& srcRect);
         };
     }
 }
