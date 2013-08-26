@@ -7,6 +7,8 @@
 
 using namespace std;
 
+#define WM WindowManager::GetInstance()
+
 namespace SOAR
 {
     namespace Video

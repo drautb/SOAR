@@ -51,6 +51,7 @@ include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/input")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/math")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/time")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/util")
+include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/util/state")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/video")
 
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}")
@@ -61,6 +62,7 @@ include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/input")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/math")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/time")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/util")
+include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/util/state")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/video")
 
 set(COMMON_SRCS
@@ -74,6 +76,7 @@ set(COMMON_SRCS
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/DateTime.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/FPSCounter.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/time/Timer.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/BlockedThread.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/Log.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/util/StringUtils.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/Texture.cpp
