@@ -7,6 +7,8 @@
 
 using namespace std;
 
+#define CM ContentManager::GetInstance()
+
 namespace SOAR
 {
     namespace Content
@@ -67,7 +69,9 @@ namespace SOAR
             T* Handle(int id)
             {
                 if (hasKey(id))
-                    return contentIndex[id];
+                    return static_cast<T*>(contentIndex[id]);
+
+                return nullptr;
             }
 
         private:
