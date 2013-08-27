@@ -81,6 +81,7 @@ set(COMMON_SRCS
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/Scene.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/Texture.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/Texture2D.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/TiledTexture2D.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/video/WindowManager.cpp
 )
 
