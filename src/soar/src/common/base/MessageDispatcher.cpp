@@ -37,7 +37,7 @@ void MessageDispatcher::DispatchMsg(int senderId, int receiverId, int msg,
 
     Telegram packet(senderId, receiverId, msg, GetTime() + delay, extraInfo);
 
-    if (delay < 0.0)
+    if (delay <= 0.0)
         discharge(receiver, packet);
     else
         msgQueue.insert(packet);

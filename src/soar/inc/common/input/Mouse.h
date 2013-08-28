@@ -18,6 +18,13 @@ namespace SOAR
 
             const static int        BUTTON_COUNT = 3;
 
+            enum 
+            {
+                LM_BUTTON=0,
+                MM_BUTTON,
+                RM_BUTTON
+            };
+
             int                     xPos, yPos;
             
             int                     buttons[BUTTON_COUNT];
@@ -48,7 +55,11 @@ namespace SOAR
              */
             ~Mouse(void);
 
-            bool ButtonIsDown(int button);
+            bool ButtonIsDown(int button)const;
+
+            bool LMBIsDown()const{return ButtonIsDown(LM_BUTTON);}
+            bool MMBIsDown()const{return ButtonIsDown(MM_BUTTON);}
+            bool RMBIsDown()const{return ButtonIsDown(RM_BUTTON);}
 
             bool ButtonIsHit(int button);
         };

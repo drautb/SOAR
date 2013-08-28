@@ -27,7 +27,7 @@ Mouse::~Mouse()
 
 }
 
-bool Mouse::ButtonIsDown(int button)
+bool Mouse::ButtonIsDown(int button)const
 {
     return buttons[button];
 }

@@ -5,7 +5,7 @@
 using namespace SOAR;
 using namespace Time;
 
-double GetTime()
+double Time::GetTime()
 {
 	return glfwGetTime();
 }

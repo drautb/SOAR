@@ -125,7 +125,7 @@ namespace SOAR
                  */
                 void ChangeState(IState<T>* newState)
                 {
-                    if (!newState)
+                    if (!newState || newState == nullptr)
                         SOAR_LOG_RECOVERABLE << "Attempted to change to a null state";
 
                     previousState = currentState;

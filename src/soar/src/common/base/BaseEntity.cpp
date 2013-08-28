@@ -1,4 +1,5 @@
 #include <base/BaseEntity.h>
+#include <base/EntityManager.h>
 #include <util/Log.h>
 
 using namespace SOAR;
@@ -9,6 +10,8 @@ int BaseEntity::nextValidId = 0;
 BaseEntity::BaseEntity(int id)
 {
     setId(id);
+
+    EM.RegisterEntity(this);
 }
 
 BaseEntity::~BaseEntity()
