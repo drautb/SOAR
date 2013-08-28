@@ -1,9 +1,11 @@
 #ifndef I_STATE_H
 #define I_STATE_H
 
+#include <base/Telegram.h>
+
 namespace SOAR
 {
-    namespace Util
+    namespace Base
     {
         namespace State
         {
@@ -35,6 +37,16 @@ namespace SOAR
                  * Called when a state is exited.
                  */
                 virtual void Exit(T*)=0;
+                
+                /**
+                 * Called if the owner of the state machine passes messages in.
+                 */
+                virtual bool OnMessage(T*, const Telegram&)=0;
+
+                /**
+                 * Called during the rendering loop
+                 */
+                virtual void Render(T*)=0;
 
             };
         }

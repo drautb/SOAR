@@ -45,27 +45,33 @@ find_package(DevIL)
 
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/audio")
+include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/base")
+include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/base/state")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/content")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/db")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/input")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/math")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/time")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/util")
-include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/util/state")
 include_directories("${SOAR_PATH_TO_INC}/${COMMON_DIR}/video")
 
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/audio")
+include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/base")
+include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/base/state")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/content")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/db")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/input")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/math")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/time")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/util")
-include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/util/state")
 include_directories("${SOAR_PATH_TO_INC}/${CFG_PLATFORM}/video")
 
 set(COMMON_SRCS
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/base/BaseEntity.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/base/EntityManager.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/base/Telegram.cpp
+    ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/base/MessageDispatcher.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/content/ContentManager.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/db/Database.cpp
     ${SOAR_PATH_TO_SRC}/${COMMON_DIR}/input/Keyboard.cpp

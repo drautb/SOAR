@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define CM ContentManager::GetInstance()
+#define CM SOAR::Content::ContentManager::GetInstance()
 
 namespace SOAR
 {

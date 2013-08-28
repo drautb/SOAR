@@ -1,21 +1,26 @@
-#include <ctime>
+#include <GLFW/glfw3.h>
 
 #include "Timer.h"
 
 using namespace SOAR;
 using namespace Time;
 
-Timer::Timer(time_t intervalInSeconds)
+double GetTime()
 {
-	started = time(NULL);
+	return glfwGetTime();
+}
+
+Timer::Timer(double intervalInSeconds)
+{
+	started = GetTime();
 	lastExpired = 0;
 	setInterval(intervalInSeconds);
 }
 
 void Timer::update()
 {
-	time_t currentTime = time(NULL);
-	time_t lastTime = lastExpired == 0 ? started : lastExpired;
+	double currentTime = GetTime();
+	double lastTime = lastExpired == 0 ? started : lastExpired;
 
 	if (currentTime - lastTime >= interval)
 	{
@@ -32,17 +37,17 @@ bool Timer::hasExpired()
 	return hasExpired;
 }
 
-time_t Timer::totalElapsed()
+double Timer::totalElapsed()
 {
-	return time(NULL) - started;
+	return GetTime() - started;
 }
 
-time_t Timer::elapsed()
+double Timer::elapsed()
 {
-	return time(NULL) - lastExpired;
+	return GetTime() - lastExpired;
 }
 
-void Timer::setInterval(time_t newInterval)
+void Timer::setInterval(double newInterval)
 {
 	interval = newInterval;
 	expired = false;

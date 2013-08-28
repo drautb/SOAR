@@ -1,11 +1,12 @@
 #ifndef STATE_MACHINE_H
 #define STATE_MACHINE_H
 
-#include "Log.h"
+#include <base/state/IState.h>
+#include <util/Log.h>
 
 namespace SOAR
 {
-    namespace Util
+    namespace Base
     {
         namespace State
         {
@@ -82,11 +83,38 @@ namespace SOAR
                  */
                 void Update()const
                 {
-                    if (globalState)
+                    if (globalState != nullptr)
                         globalState->Execute(owner);
 
-                    if (currentState)
+                    if (currentState != nullptr)
                         currentState->Execute(owner);
+                }
+
+                /**
+                 * This method passes messages on to the individual states
+                 * @param msg The message that was received
+                 */
+                bool HandleMessage(const Telegram& msg)
+                {
+                    if (currentState != nullptr && currentState->OnMessage(owner, msg))
+                        return true;
+
+                    if (globalState != nullptr && globalState->OnMessage(owner, msg))
+                        return true;
+
+                    return false;
+                }
+
+                /**
+                 * Invokes the Render method of all the current states
+                 */
+                void Render()const
+                {
+                    if (globalState != nullptr)
+                        globalState->Render(owner);
+
+                    if (currentState != nullptr)
+                        currentState->Render(owner);
                 }
 
                 /**
@@ -95,7 +123,7 @@ namespace SOAR
                  * the Enter/Exit functions appropriately.
                  * @param newState [description]
                  */
-                void ChangeState(State<T>* newState)
+                void ChangeState(IState<T>* newState)
                 {
                     if (!newState)
                         SOAR_LOG_RECOVERABLE << "Attempted to change to a null state";

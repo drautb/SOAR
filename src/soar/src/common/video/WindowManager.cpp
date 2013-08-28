@@ -2,8 +2,10 @@
 
 #include <GLFW/glfw3.h>
 
-#include "Log.h"
-#include "WindowManager.h"
+#include <util/Log.h>
+#include <video/WindowManager.h>
+#include <input/Keyboard.h>
+#include <input/Mouse.h>
 
 using namespace std;
 using namespace SOAR;
@@ -49,6 +51,11 @@ bool WindowManager::CreateWindow(int windowId, int width, int height,
         SOAR_LOG_FATAL << "glfwCreateWindow Failed, title: " << title;
         return false;
     }
+
+    // Register the input functions
+    glfwSetKeyCallback(window, KeyboardCallback);
+    glfwSetCursorPosCallback(window, MousePosCallback);
+    glfwSetMouseButtonCallback(window, MouseButtonCallback);
 
     windowIndex[windowId] = window;
 

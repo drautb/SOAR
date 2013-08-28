@@ -3,11 +3,12 @@
 
 #include <stack>
 
-#include "Log.h"
+#include <base/state/IState.h>
+#include <util/Log.h>
 
 namespace SOAR
 {
-    namespace Util
+    namespace Base
     {
         namespace State
         {
@@ -46,7 +47,7 @@ namespace SOAR
                 {
                     owner = newOwner;
                     globalState = nullptr;
-                    stateStack.clear();
+                    clear();
                 }
 
                 /**
@@ -55,9 +56,9 @@ namespace SOAR
                 ~StateMachineStack()
                 {
                     if (globalState)
-                        globalState->Exit();
+                        globalState->Exit(owner);
 
-                    stateStack.clear();
+                    clear();
                 }
                 
                 /**
@@ -77,11 +78,39 @@ namespace SOAR
                  */
                 void Update()
                 {
-                    if (globalState)
-                        globalState.Execute(owner);
+                    if (globalState != nullptr)
+                        globalState->Execute(owner);
 
-                    if (stateStack.top())
+                    if (!stateStack.empty() && stateStack.top() != nullptr)
                         stateStack.top()->Execute(owner);
+                }
+
+                /**
+                 * This method passes messages on to the individual states
+                 * @param msg The message that was received
+                 */
+                bool HandleMessage(const Telegram& msg)
+                {
+                    if (!stateStack.empty() && stateStack.top() != nullptr && 
+                        stateStack.top()->OnMessage(owner, msg))
+                        return true;
+
+                    if (globalState != nullptr && globalState->OnMessage(owner, msg))
+                        return true;
+
+                    return false;
+                }
+
+                /**
+                 * Invokes the render method of the current states
+                 */
+                void Render()
+                {
+                    if (globalState != nullptr)
+                        globalState->Render(owner);
+
+                    if (!stateStack.empty() && stateStack.top() != nullptr)
+                        stateStack.top()->Render(owner);
                 }
 
                 /**
@@ -108,6 +137,17 @@ namespace SOAR
                 {
                     stateStack.top()->Exit(owner);
                     stateStack.pop();
+                }
+
+            private:
+
+                /**
+                 * Clears everything out of the stateStack
+                 */
+                void clear()
+                {
+                    while (!stateStack.empty())
+                        PopState();
                 }
 
             };

@@ -8,6 +8,13 @@ namespace SOAR
 	namespace Time
 	{
 		/**
+		 * This is a function used to get the current
+		 * time since the program started.
+		 * @return The number of seconds since glfwInit was called
+		 */
+		double GetTime();
+
+		/**
 		 * Keeps track of time and how often it should signal that it's limit has
 		 * been hit. When it's created, it takes the current time as it's starting 
 		 * point, and then will flip a flag each time it's interval has elapsed, 
@@ -20,17 +27,17 @@ namespace SOAR
 			/**
 			 * Time that this timer was initialized
 			 */
-			time_t started;
+			double started;
 	
 			/**
 			 * The interval in seconds between each signal from this timer.
 			 */
-			time_t interval;
+			double interval;
 	
 			/**
 			 * Time when this timer last expired, 0 if it hasn't expired yet.
 			 */
-			time_t lastExpired;
+			double lastExpired;
 	
 			/**
 			 * Expired flag, will remain true once the timer has expired
@@ -46,14 +53,14 @@ namespace SOAR
 			 * If no interval is set, it may be set later. If not, then
 			 * this timer will never expire
 			 */
-			Timer(time_t intervalInSeconds=0);
+			Timer(double intervalInSeconds=0);
 	
 			/**
 			 * Destructor
 			 */ 
 			~Timer()
 			{}
-	
+
 			/**
 			 * Updates the timer given the current time
 			 */
@@ -67,17 +74,17 @@ namespace SOAR
 			/**
 			 * Get the total time elapsed since this timer began
 			 */
-			time_t totalElapsed();
+			double totalElapsed();
 	
 			/**
 			 * Get the time elapsed since this time last expired
 			 */
-			time_t elapsed();
+			double elapsed();
 	
 			/**
 			 * Set an interval for this timer. Resets expired flag.
 			 */
-			void setInterval(time_t newInterval);
+			void setInterval(double newInterval);
 		};
 	}
 }

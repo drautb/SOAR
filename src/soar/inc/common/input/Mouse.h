@@ -3,6 +3,8 @@
 
 #include <GLFW/glfw3.h>
 
+#define MOUSE SOAR::Input::Mouse::GetInstance()
+
 void MousePosCallback(GLFWwindow* window, double newXPos, double newYPos);
 void MouseButtonCallback(GLFWwindow* window, int button, int pressed, int);
 
