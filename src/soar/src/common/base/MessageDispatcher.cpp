@@ -33,6 +33,9 @@ MessageDispatcher& MessageDispatcher::GetInstance()
 void MessageDispatcher::DispatchMsg(int senderId, int receiverId, int msg,
                                     double delay, void* extraInfo)
 {
+    if (msg < 0)
+        return; // Messages less than 0 are considered garbage
+
     BaseEntity* receiver = EM.GetById(receiverId);
 
     Telegram packet(senderId, receiverId, msg, GetTime() + delay, extraInfo);
