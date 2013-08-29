@@ -11,11 +11,15 @@ set(CMAKE_BUILD_TYPE Debug)
 #############################
 # Try to Select Platform Automatically
 #############################
+MESSAGE(STATUS "System Name: ${CMAKE_SYSTEM_NAME}")
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    MESSAGE(STATUS "Building for Linux")
     set(CFG_PLATFORM linux)
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    MESSAGE(STATUS "Building for OSX")
     set(CFG_PLATFORM mac)
 elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    MESSAGE(STATUS "Building for Windows")
     set(CFG_PLATFORM windows)    
 endif()
 
