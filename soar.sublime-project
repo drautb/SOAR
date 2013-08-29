@@ -12,8 +12,8 @@
 			"variants": [
 				{
 					"name": "Clean",
-					"cmd": ["make", "clean"],
-					"working_dir": "${project_path}/build"
+					"cmd": ["./clean_cmake.sh"],
+					"working_dir": "${project_path}/scripts/"
 				},
 				{
 					"name": "Generate Documentation",
@@ -26,7 +26,7 @@
 	"folders":
 	[
 		{
-			"path": "/home/drautb/Dropbox/GitHub/SOAR"
+			"path": "~/Dropbox/GitHub/SOAR"
 		}
 	],
 	"settings":

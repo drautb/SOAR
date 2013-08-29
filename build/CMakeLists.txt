@@ -9,11 +9,15 @@ set(CMAKE_BUILD_TYPE Debug)
 # set(CMAKE_BUILD_TYPE Release)
 
 #############################
-# Select Platform
+# Try to Select Platform Automatically
 #############################
-# set(CFG_PLATFORM windows)
-# set(CFG_PLATFORM mac)
-set(CFG_PLATFORM linux)
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    set(CFG_PLATFORM linux)
+elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(CFG_PLATFORM mac)
+elseif (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    set(CFG_PLATFORM windows)    
+endif()
 
 #############################
 # Set lots of variables
