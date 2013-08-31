@@ -123,7 +123,7 @@ namespace SOAR
                     if (!state)
                         SOAR_LOG_RECOVERABLE << "Attempted to push invalid state!";
 
-                    if (stateStack.top() != nullptr)
+                    if (!stateStack.empty())
                         stateStack.top()->Pause(owner);
 
                     stateStack.push(state);
@@ -139,7 +139,7 @@ namespace SOAR
                     stateStack.top()->Exit(owner);
                     stateStack.pop();
 
-                    if (stateStack.top() != nullptr)
+                    if (!stateStack.empty())
                         stateStack.top()->Resume(owner);
                 }
 
