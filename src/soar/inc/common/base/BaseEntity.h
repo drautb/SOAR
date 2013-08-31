@@ -31,7 +31,7 @@ namespace SOAR
             /**
              * Destructor
              */
-            ~BaseEntity();
+            virtual ~BaseEntity();
 
             /**
              * All entities must implemente an update function
