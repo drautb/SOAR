@@ -3,7 +3,7 @@
 
 #include <stack>
 
-#include <base/state/IState.h>
+#include <base/state/IStackableState.h>
 #include <util/Log.h>
 
 namespace SOAR
@@ -29,14 +29,14 @@ namespace SOAR
 
                 /**
                  * The stack of states.
-                 * A stack of pointers to IState<T>
+                 * A stack of pointers to IStackableState<T>
                  */
-                std::stack<IState<T>*>          stateStack;
+                std::stack<IStackableState<T>*>          stateStack;
 
                 /**
                  * A pointer to a global state
                  */
-                IState<T>*                      globalState     = nullptr;
+                IStackableState<T>*                      globalState     = nullptr;
 
             public:
                 
@@ -66,7 +66,7 @@ namespace SOAR
                  * state for this SM
                  * @param state pointer to an existing state
                  */
-                void SetGlobalState(IState<T>* state)
+                void SetGlobalState(IStackableState<T>* state)
                 {
                     globalState = state;
                     globalState->Enter(owner);
@@ -115,14 +115,16 @@ namespace SOAR
 
                 /**
                  * Pushes a new state onto the stack. Calls the
-                 * enter method of the new state, but not the exit
-                 * method of the old state.
+                 * enter method of the new state, and the pause method of the old state
                  * @param state Pointer to an existing state
                  */
-                void PushState(IState<T>* state)
+                void PushState(IStackableState<T>* state)
                 {
                     if (!state)
                         SOAR_LOG_RECOVERABLE << "Attempted to push invalid state!";
+
+                    if (stateStack.top() != nullptr)
+                        stateStack.top()->Pause(owner);
 
                     stateStack.push(state);
                     stateStack.top()->Enter(owner);
@@ -130,13 +132,15 @@ namespace SOAR
 
                 /**
                  * Pops the current state off the stack, calling it's
-                 * exit method, but not the Enter method of the state
-                 * underneath.
+                 * exit method, and the Resume method of the state underneath.
                  */
                 void PopState()
                 {
                     stateStack.top()->Exit(owner);
                     stateStack.pop();
+
+                    if (stateStack.top() != nullptr)
+                        stateStack.top()->Resume(owner);
                 }
 
             private:

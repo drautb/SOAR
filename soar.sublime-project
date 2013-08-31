@@ -6,14 +6,35 @@
 			[
 				"make"
 			],
-			"name": "Build SOAR",
-			"working_dir": "${project_path}/build/",
+			"name": "Linux - Build SOAR",
+			"working_dir": "${project_path}/build/linux",
 
 			"variants": [
 				{
-					"name": "Clean",
-					"cmd": ["./clean_cmake.sh"],
-					"working_dir": "${project_path}/scripts/"
+					"cmd": ["make"],
+					"name": "Mac OS X - Build SOAR",
+					"working_dir": "${project_path}/build/mac"
+				},
+				{
+					"cmd": ["make"],
+					"name": "Windows - Build SOAR",
+					"working_dir": "${project_path}/build/windows"
+				},
+
+				{
+					"name": "Linux - Clean SOAR",
+					"cmd": ["make", "clean"],
+					"working_dir": "${project_path}/build/linux"
+				},
+				{
+					"name": "Mac OS X - Clean SOAR",
+					"cmd": ["make", "clean"],
+					"working_dir": "${project_path}/build/mac"
+				},
+				{
+					"name": "Windows - Clean SOAR",
+					"cmd": ["make", "clean"],
+					"working_dir": "${project_path}/build/windows"
 				},
 				{
 					"name": "Generate Documentation",
