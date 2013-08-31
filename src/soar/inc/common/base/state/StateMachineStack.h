@@ -47,7 +47,7 @@ namespace SOAR
                 {
                     owner = newOwner;
                     globalState = nullptr;
-                    clear();
+                    Clear();
                 }
 
                 /**
@@ -58,7 +58,7 @@ namespace SOAR
                     if (globalState)
                         globalState->Exit(owner);
 
-                    clear();
+                    Clear();
                 }
                 
                 /**
@@ -143,12 +143,10 @@ namespace SOAR
                         stateStack.top()->Resume(owner);
                 }
 
-            private:
-
                 /**
                  * Clears everything out of the stateStack
                  */
-                void clear()
+                void Clear()
                 {
                     while (!stateStack.empty())
                         PopState();
