@@ -36,7 +36,7 @@ namespace SOAR
                 /**
                  * A pointer to a global state
                  */
-                IStackableState<T>*                      globalState     = nullptr;
+                IState<T>*                      globalState     = nullptr;
 
             public:
                 
@@ -66,7 +66,7 @@ namespace SOAR
                  * state for this SM
                  * @param state pointer to an existing state
                  */
-                void SetGlobalState(IStackableState<T>* state)
+                void SetGlobalState(IState<T>* state)
                 {
                     globalState = state;
                     globalState->Enter(owner);
