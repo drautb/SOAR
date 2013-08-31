@@ -28,7 +28,7 @@ namespace SOAR
                 /**
                  * Virtual Destructor
                  */
-                virtual ~IStackableState();
+                virtual ~IStackableState(){}
 
                 /**
                  * This method is called when a state that is 
